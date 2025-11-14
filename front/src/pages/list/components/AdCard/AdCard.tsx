@@ -1,6 +1,8 @@
+import { Link, generatePath } from "react-router";
+
 import { Badge, Button, Card, Group, Image, Text } from "@mantine/core";
 
-import { AD_STATUS } from "@/constants";
+import { AD_STATUS, PATHS } from "@/shared/constants";
 
 import styles from "./AdCard.module.css";
 
@@ -12,7 +14,7 @@ const STATUS_COLOR = {
   approved: "green"
 };
 
-export const AdCard = ({ title, description, status, images }: TAdCardProps) => (
+export const AdCard = ({ id, title, description, status, images }: TAdCardProps) => (
   <Card shadow='sm' padding='lg' radius='md' withBorder>
     <Card.Section>
       <Image src={images[0]} height={160} alt={`Фото товара ${title}`} />
@@ -29,7 +31,7 @@ export const AdCard = ({ title, description, status, images }: TAdCardProps) => 
       {description}
     </Text>
 
-    <Button fullWidth mt='md' radius='md'>
+    <Button component={Link} to={generatePath(PATHS.ITEM_ID, { id })} fullWidth mt='md' radius='md'>
       Открыть
     </Button>
   </Card>

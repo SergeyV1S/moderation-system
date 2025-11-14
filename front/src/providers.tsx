@@ -3,8 +3,8 @@ import { RouterProvider } from "react-router";
 import { Container, MantineProvider } from "@mantine/core";
 import { QueryClientProvider } from "@tanstack/react-query";
 
-import { queryClient } from "./constants";
 import { router } from "./router";
+import { queryClient } from "./shared/constants";
 
 export const Providers = () => (
   <QueryClientProvider client={queryClient}>

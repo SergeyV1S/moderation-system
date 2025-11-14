@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router";
 
 import { useDebouncedValue } from "@mantine/hooks";
 
-import { updateSearchParams } from "@/utils";
+import { updateSearchParams } from "@/shared/utils";
 
 export const useAdSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();

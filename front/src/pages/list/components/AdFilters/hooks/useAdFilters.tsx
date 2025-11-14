@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
 
-import { updateSearchParams } from "@/utils";
+import { updateSearchParams } from "@/shared/utils";
 
 export const useAdFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();

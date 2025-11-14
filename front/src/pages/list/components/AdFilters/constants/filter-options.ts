@@ -1,4 +1,4 @@
-import { AD_STATUS } from "@/constants";
+import { AD_STATUS } from "@/shared/constants";
 
 export const categoryOptions = [
   {

@@ -1,4 +1,4 @@
-import { api } from "@/utils";
+import { api } from "@/shared/utils";
 
 interface IGetAdsResponse {
   ads: Ad[];

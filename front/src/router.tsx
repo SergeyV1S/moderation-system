@@ -1,8 +1,8 @@
 import { lazy } from "react";
-import { Navigate, createBrowserRouter } from "react-router";
+import { Navigate, Outlet, createBrowserRouter } from "react-router";
 
-import { PATHS } from "@/constants";
-import { createRoute } from "@/utils";
+import { PATHS } from "@/shared/constants";
+import { createRoute } from "@/shared/utils";
 
 const ListScreen = lazy(() => import("@/pages/list/page"));
 const ListItemScreen = lazy(() => import("@/pages/list-item-[id]/page"));
@@ -13,4 +13,9 @@ const ListRoute = createRoute(PATHS.LIST, <ListScreen />);
 const ListItemRoute = createRoute(PATHS.ITEM_ID, <ListItemScreen />);
 const StatsRoute = createRoute(PATHS.STATS, <StatsScreen />);
 
-export const router = createBrowserRouter([IndexRoute, ListRoute, ListItemRoute, StatsRoute]);
+export const router = createBrowserRouter([
+  {
+    element: <Outlet />,
+    children: [IndexRoute, ListRoute, ListItemRoute, StatsRoute]
+  }
+]);
