@@ -23,7 +23,7 @@ export const webpackConfig = (options: IBuildConfigOptions): Configuration => {
       rules: buildLoadersRuleConfig(options)
     },
     resolve: buildResolversConfig(options),
-    devServer: isDev && buildDevServerConfig(options)
+    devServer: isDev ? buildDevServerConfig(options) : undefined
   };
 };
 

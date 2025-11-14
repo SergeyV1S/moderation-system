@@ -1,0 +1,7 @@
+.title_group {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}

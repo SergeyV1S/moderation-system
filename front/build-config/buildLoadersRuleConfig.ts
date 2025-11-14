@@ -5,15 +5,25 @@ import type { IBuildConfigOptions } from "./types";
 export const buildLoadersRuleConfig = (options: IBuildConfigOptions) => {
   const cssLoader = {
     test: /\.css$/i,
-    use: [
-      MiniCssExtractPlugin.loader,
+    oneOf: [
       {
-        loader: "css-loader",
-        options: {
-          modules: {
-            namedExport: false
+        include: /node_modules/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
+      },
+      {
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                namedExport: false,
+                exportLocalsConvention: "asIs"
+              }
+            }
           }
-        }
+        ]
       }
     ]
   };

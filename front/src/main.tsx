@@ -1,5 +1,7 @@
 import { createRoot } from "react-dom/client";
 
+import "@mantine/core/styles.css";
+
 import { Providers } from "./providers";
 
 const init = () => {

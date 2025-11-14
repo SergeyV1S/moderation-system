@@ -1,11 +1,17 @@
 const express = require('express');
-const path = require('path');
+const cors = require('cors');
+require('dotenv/config');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.static('public'));
+
+app.use(cors({
+    origin: [process.env.CLIENT_BASE_URL],
+    credentials: true
+  }))
 
 app.use('/api/v1', require('./src/routes/v1'));
 
