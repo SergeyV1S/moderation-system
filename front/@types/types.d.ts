@@ -1,5 +1,5 @@
 // Основные типы для объявлений
-type AdStatus = "pending" | "approved" | "rejected";
+type AdStatus = "pending" | "approved" | "rejected" | "draft";
 type Priority = "urgent" | "normal";
 
 // Тип для продавца
@@ -25,7 +25,7 @@ interface ModerationHistoryItem {
   id: number;
   moderatorId: number;
   moderatorName: string;
-  action: "approved" | "rejected";
+  action: AdStatus;
   reason: string | null;
   comment: string;
   timestamp: string;

@@ -1,0 +1,10 @@
+.root {
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+@media (max-width: 48em) {
+  .root {
+    max-height: 500px;
+  }
+}

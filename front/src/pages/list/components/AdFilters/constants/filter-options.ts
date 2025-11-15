@@ -47,6 +47,10 @@ export const statusOptions = [
   {
     label: AD_STATUS["rejected"],
     value: "rejected"
+  },
+  {
+    label: AD_STATUS["draft"],
+    value: "draft"
   }
 ];
 

@@ -16,6 +16,7 @@ export const webpackConfig = (options: IBuildConfigOptions): Configuration => {
     output: {
       path: options.paths.output,
       filename: isDev ? "chunks/[name].js" : "chunks/[contenthash].js",
+      publicPath: "/",
       clean: true
     },
     plugins: buildPluginsConfig(options),

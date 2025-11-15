@@ -11,7 +11,8 @@ type TAdCardProps = Ad;
 const STATUS_COLOR = {
   pending: "yellow",
   rejected: "red",
-  approved: "green"
+  approved: "green",
+  draft: "gray"
 };
 
 export const AdCard = ({ id, title, description, status, images }: TAdCardProps) => (

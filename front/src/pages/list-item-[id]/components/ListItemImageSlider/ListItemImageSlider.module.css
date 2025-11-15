@@ -1,0 +1,27 @@
+.indicator {
+  width: 20px;
+  height: 5px;
+  background-color: white;
+  transition: width 250ms ease;
+
+  &[data-active] {
+    width: 40px;
+  }
+}
+
+.controls {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.control {
+  background-color: white;
+}
+
+.root {
+  &:hover {
+    .controls {
+      opacity: 1;
+    }
+  }
+}

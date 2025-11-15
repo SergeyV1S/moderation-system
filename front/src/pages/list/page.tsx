@@ -10,7 +10,7 @@ const ListPage = () => {
   const { state, functions } = useListPage();
 
   return (
-    <Flex direction='column' mih='100vh'>
+    <Flex direction='column' mih='90vh'>
       <Stack gap='lg' flex={1}>
         <Title order={1}>Список объявлений</Title>
         <Flex align='center' gap={20}>
