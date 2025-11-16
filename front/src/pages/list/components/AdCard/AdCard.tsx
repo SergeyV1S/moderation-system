@@ -19,12 +19,12 @@ export const AdCard = ({
   createdAt,
   images
 }: TAdCardProps) => (
-  <Card shadow='sm' padding='lg' radius='md' withBorder>
+  <Card shadow='sm' padding='lg' h='100%' radius='md' withBorder>
     <Card.Section pos='relative'>
       <Image
         height={160}
         src={images[0]}
-        fallbackSrc='https://cdn.vectorstock.com/i/500p/81/79/no-photo-icon-default-placeholder-vector-41468179.jpg'
+        fallbackSrc='https://upload.wikimedia.org/wikipedia/commons/9/9a/%D0%9D%D0%B5%D1%82_%D1%84%D0%BE%D1%82%D0%BE.png'
         alt={`Фото товара ${title}`}
       />
       <Badge pos='absolute' top={12} right={12} color={PRIORITY_COLORS[priority]} variant='light'>

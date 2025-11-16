@@ -39,6 +39,8 @@ const ListItemPage = () => {
               </Grid.Col>
             </Grid>
 
+            <ActionsButtons state={state} functions={functions} />
+
             <Group component='nav' justify='space-between'>
               <Button
                 to={PATHS.LIST}
@@ -86,8 +88,6 @@ const ListItemPage = () => {
           </Grid>
         )}
       </Flex>
-
-      <ActionsButtons state={state} functions={functions} />
 
       <Modal.Root
         opened={state.rejectMoadalOpened}

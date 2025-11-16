@@ -14,7 +14,7 @@ const ListPage = () => {
         </Title>
         <Grid gutter='md' align='end'>
           <Grid.Col span='auto'>
-            <AdSearch />
+            <AdSearch ref={state.searchInputRef} />
           </Grid.Col>
 
           <Grid.Col span='content'>
