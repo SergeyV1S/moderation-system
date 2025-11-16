@@ -13,6 +13,7 @@ export interface IGetAllAdsParams {
   maxPrice: string;
   search: string;
   sortBy: string;
+  limit: string;
 }
 
 export type TGetAllAdsConfig = RequestConfig<IGetAllAdsParams>;

@@ -13,7 +13,7 @@ export const CategoriesBarChart = () => {
       </Title>
       <BarChart
         h={300}
-        pt={16}
+        pt={24}
         type='stacked'
         data={state.barChartData}
         dataKey='category'

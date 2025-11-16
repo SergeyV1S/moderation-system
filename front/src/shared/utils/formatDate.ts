@@ -9,3 +9,13 @@ export const formatDateWithTime = (timestamp: string) => {
 
   return formatedDate;
 };
+
+export const formatDateWithoutTime = (timestamp: string) => {
+  const formatedDate = new Date(timestamp).toLocaleDateString("ru-RU", {
+    day: "numeric",
+    month: "short",
+    year: "numeric"
+  });
+
+  return formatedDate;
+};

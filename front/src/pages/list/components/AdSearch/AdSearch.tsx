@@ -7,7 +7,6 @@ export const AdSearch = () => {
 
   return (
     <TextInput
-      flex={1}
       placeholder='Введите название объявления'
       value={state.searchValue}
       onChange={functions.handleSearchChange}

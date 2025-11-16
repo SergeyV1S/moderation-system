@@ -13,7 +13,9 @@ import {
 const StatsPage = () => (
   <Flex direction='column' mih='90vh'>
     <Stack gap='lg' flex={1}>
-      <Title order={1}>Моя статистика</Title>
+      <Title order={1} size='h2'>
+        Моя статистика
+      </Title>
       <DateRangePreset />
 
       <Paper p='lg' pos='relative' shadow='sm' withBorder radius={16}>

@@ -3,7 +3,11 @@ import { useSearchParams } from "react-router";
 
 import { updateSearchParams } from "@/shared/utils";
 
-export const useAdFilters = () => {
+interface IUseAdFiltersParams {
+  close: () => void;
+}
+
+export const useAdFilters = ({ close }: IUseAdFiltersParams) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const updateParams = updateSearchParams(searchParams, setSearchParams);
@@ -58,6 +62,7 @@ export const useAdFilters = () => {
     params.delete("sortBy");
 
     setSearchParams(params);
+    close();
   };
 
   const saveFilters = () => {
@@ -67,6 +72,7 @@ export const useAdFilters = () => {
       maxPrice: filters.maxPrice ? filters.maxPrice.toString() : "",
       statuses: filters.statuses?.join(",") || ""
     });
+    close();
   };
 
   return {

@@ -1,9 +1,12 @@
 import { useSearchParams } from "react-router";
 
+import { updateSearchParams } from "@/shared/utils";
+
 import { useGetAdsQuery } from "../api";
 
 export const useListPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const updateParams = updateSearchParams(searchParams, setSearchParams);
 
   const { data, isPending } = useGetAdsQuery({
     page: searchParams.get("page") || "1",
@@ -12,11 +15,20 @@ export const useListPage = () => {
     maxPrice: searchParams.get("maxPrice"),
     categoryId: searchParams.get("categoryId"),
     status: searchParams.get("statuses")?.split(","),
-    sortBy: searchParams.get("sortBy")
+    sortBy: searchParams.get("sortBy"),
+    limit: searchParams.get("limit")
   });
 
-  const onPageChange = (page: number) => {
-    setSearchParams({ page: page.toString() });
+  const onLimitChange = (limit: string) => {
+    updateParams({ limit: limit });
   };
-  return { state: { adsQueryState: { data, isPending } }, functions: { onPageChange } };
+
+  const onPageChange = (page: number) => {
+    updateParams({ page: page.toString() });
+  };
+
+  return {
+    state: { adsQueryState: { data, isPending } },
+    functions: { onPageChange, onLimitChange }
+  };
 };

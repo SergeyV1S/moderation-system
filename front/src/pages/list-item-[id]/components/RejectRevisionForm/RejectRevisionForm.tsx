@@ -25,10 +25,13 @@ export const RejectRevisionForm = ({ onSubmit, handleClose }: IRejectRevisionFor
   return (
     <form onSubmit={form.onSubmit(onSubmit)}>
       <Stack gap='lg'>
-        <Radio.Group label='Причина отклонения' withAsterisk {...form.getInputProps("reason")}>
+        <Radio.Group label='Причина' withAsterisk {...form.getInputProps("reason")}>
           <Stack gap='sm' mt='xs'>
             <Radio value='forbidden' label='Запрещенный товар' />
             <Radio value='wrong_category' label='Неверная категория' />
+            <Radio value='wrong_description' label='Некорректное описание' />
+            <Radio value='wrong_photo' label='Проблемы с фото' />
+            <Radio value='mb_fraud' label='Подозрение на мошенничество' />
             <Radio value='other' label='Другое' />
           </Stack>
         </Radio.Group>
@@ -36,7 +39,7 @@ export const RejectRevisionForm = ({ onSubmit, handleClose }: IRejectRevisionFor
         {form.values.reason === "other" && (
           <TextInput
             label='Укажите причину'
-            placeholder='Введите причину отклонения'
+            placeholder='Введите причину'
             withAsterisk
             {...form.getInputProps("customReason")}
           />
@@ -56,14 +59,14 @@ export const RejectRevisionForm = ({ onSubmit, handleClose }: IRejectRevisionFor
               handleClose &&
               (() => {
                 form.reset();
-                handleClose;
+                handleClose();
               })
             }
           >
             Отмена
           </Button>
           <Button color='red' type='submit'>
-            Отклонить
+            Отправить
           </Button>
         </Group>
       </Stack>

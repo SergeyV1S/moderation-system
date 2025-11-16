@@ -19,7 +19,7 @@ export const ModerationHistory = ({ moderationHistory }: IModerationHistoryProps
 
       <Timeline active={moderationHistory.length - 1} bulletSize={24} classNames={styles}>
         {moderationHistory.length === 0 && <Text>Это объявление не проходило модерацию</Text>}
-        {moderationHistory.reverse().map((moderation) => (
+        {moderationHistory.map((moderation) => (
           <Timeline.Item
             key={moderation.id}
             bullet={

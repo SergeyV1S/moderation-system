@@ -1,6 +1,6 @@
 const generateMockAds = (count) => {
   const categories = ['Электроника', 'Недвижимость', 'Транспорт', 'Работа', 'Услуги', 'Животные', 'Мода', 'Детское'];
-  const statuses = ['pending', 'approved', 'rejected'];
+  const statuses = ['requestChanges', 'approved', 'rejected'];
   const priorities = ['normal', 'urgent'];
   const rejectionReasons = ['Запрещенный товар', 'Неверная категория', 'Некорректное описание', 'Проблемы с фото', 'Подозрение на мошенничество', 'Другое'];
   
@@ -49,7 +49,7 @@ const generateMockAds = (count) => {
     };
     
     // Добавляем историю модерации с датами
-    if (statuses[statusId] !== 'pending') {
+    if (statuses[statusId] !== 'requestChanges') {
       const moderatorId = Math.floor(Math.random() * 5) + 1;
       const moderatorName = `Модератор ${moderatorId}`;
       // Модерация происходит через 5-30 минут после создания

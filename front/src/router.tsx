@@ -1,6 +1,9 @@
 import { lazy } from "react";
 import { Navigate, Outlet, createBrowserRouter } from "react-router";
 
+import { Container, Stack } from "@mantine/core";
+
+import { Header } from "@/shared/components";
 import { PATHS } from "@/shared/constants";
 import { createRoute } from "@/shared/utils";
 
@@ -15,7 +18,14 @@ const StatsRoute = createRoute(PATHS.STATS, <StatsScreen />);
 
 export const router = createBrowserRouter([
   {
-    element: <Outlet />,
+    element: (
+      <Container size='lg' py={16}>
+        <Stack gap={32}>
+          <Header />
+          <Outlet />
+        </Stack>
+      </Container>
+    ),
     children: [IndexRoute, ListRoute, ListItemRoute, StatsRoute]
   }
 ]);

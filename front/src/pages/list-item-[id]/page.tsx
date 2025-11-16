@@ -1,13 +1,12 @@
 import { Link } from "react-router";
 
-import { Button, Flex, Grid, Group, Modal } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { IconArrowLeft, IconArrowRight, IconCheck, IconEdit, IconX } from "@tabler/icons-react";
+import { Button, Flex, Grid, Group, Modal, Skeleton, Title } from "@mantine/core";
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 
 import { PATHS } from "@/shared/constants";
-import { CustomLoader as Loader } from "@/shared/ui";
 
 import {
+  ActionsButtons,
   FullDescription,
   ListItemImageSlider,
   ModerationHistory,
@@ -16,8 +15,6 @@ import {
 import { useListItemPage } from "./hooks";
 
 const ListItemPage = () => {
-  const [opened, actions] = useDisclosure(false);
-  const [opened2, actions2] = useDisclosure(false);
   const { state, functions } = useListItemPage();
 
   return (
@@ -25,6 +22,9 @@ const ListItemPage = () => {
       <Flex direction='column' gap={20}>
         {!state.adByIdQueryState.isPending && state.adByIdQueryState.data && (
           <>
+            <Title order={1} size='h2'>
+              {state.adByIdQueryState.data.data.title}
+            </Title>
             <Grid>
               <Grid.Col span={{ base: 12, sm: 6 }}>
                 <ListItemImageSlider images={state.adByIdQueryState.data.data.images} />
@@ -38,42 +38,6 @@ const ListItemPage = () => {
                 <FullDescription {...state.adByIdQueryState.data.data} />
               </Grid.Col>
             </Grid>
-
-            <Group justify='center'>
-              <Button
-                color='green'
-                variant='light'
-                disabled={
-                  state.actionsPending || state.adByIdQueryState.data.data.status === "approved"
-                }
-                leftSection={<IconCheck size={18} />}
-                onClick={functions.approveAd}
-              >
-                Одобрить
-              </Button>
-              <Button
-                color='red'
-                variant='light'
-                disabled={
-                  state.actionsPending || state.adByIdQueryState.data.data.status === "rejected"
-                }
-                leftSection={<IconX size={16} />}
-                onClick={actions.open}
-              >
-                Отклонить
-              </Button>
-              <Button
-                color='orange'
-                variant='light'
-                disabled={
-                  state.actionsPending || state.adByIdQueryState.data.data.status === "draft"
-                }
-                leftSection={<IconEdit size={16} />}
-                onClick={actions2.open}
-              >
-                Доработка
-              </Button>
-            </Group>
 
             <Group component='nav' justify='space-between'>
               <Button
@@ -108,9 +72,29 @@ const ListItemPage = () => {
             </Group>
           </>
         )}
-        {state.adByIdQueryState.isPending && <Loader />}
+        {state.adByIdQueryState.isPending && (
+          <Grid>
+            <Grid.Col span={{ base: 12, sm: 6 }}>
+              <Skeleton height={400} radius='md' />
+            </Grid.Col>
+            <Grid.Col span={{ base: 12, sm: 6 }}>
+              <Skeleton height={400} radius='md' />
+            </Grid.Col>
+            <Grid.Col span={12}>
+              <Skeleton height={500} radius='md' />
+            </Grid.Col>
+          </Grid>
+        )}
       </Flex>
-      <Modal.Root opened={opened} onClose={actions.close} size='md' centered>
+
+      <ActionsButtons state={state} functions={functions} />
+
+      <Modal.Root
+        opened={state.rejectMoadalOpened}
+        onClose={functions.rejectMoadalActions.close}
+        size='md'
+        centered
+      >
         <Modal.Overlay />
         <Modal.Content>
           <Modal.Header>
@@ -118,11 +102,19 @@ const ListItemPage = () => {
             <Modal.CloseButton />
           </Modal.Header>
           <Modal.Body>
-            <RejectRevisionForm onSubmit={functions.rejectAd} />
+            <RejectRevisionForm
+              onSubmit={functions.rejectAd}
+              handleClose={functions.rejectMoadalActions.close}
+            />
           </Modal.Body>
         </Modal.Content>
       </Modal.Root>
-      <Modal.Root opened={opened2} onClose={actions2.close} size='md' centered>
+      <Modal.Root
+        opened={state.revisionMoadalOpened}
+        onClose={functions.revisionMoadalActions.close}
+        size='md'
+        centered
+      >
         <Modal.Overlay />
         <Modal.Content>
           <Modal.Header>
@@ -130,7 +122,10 @@ const ListItemPage = () => {
             <Modal.CloseButton />
           </Modal.Header>
           <Modal.Body>
-            <RejectRevisionForm onSubmit={functions.revisionAd} />
+            <RejectRevisionForm
+              onSubmit={functions.revisionAd}
+              handleClose={functions.revisionMoadalActions.close}
+            />
           </Modal.Body>
         </Modal.Content>
       </Modal.Root>

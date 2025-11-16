@@ -11,7 +11,7 @@ export const ListItemImageSlider = ({ images }: IListItemImageSliderProps) => (
   <Carousel classNames={styles} withIndicators emblaOptions={{ align: "start" }} slideGap='md'>
     {images.map((image, idx) => (
       <Carousel.Slide key={image}>
-        <Image src={image} h={300} alt={`Изображение ${idx}`} />
+        <Image src={image} radius={16} h={300} alt={`Изображение ${idx}`} />
       </Carousel.Slide>
     ))}
   </Carousel>

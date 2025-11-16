@@ -13,7 +13,7 @@ export const ActivityBarChart = () => {
         Активность
       </Title>
       <BarChart
-        pt={16}
+        pt={24}
         h={300}
         type='stacked'
         data={state.barChartData}

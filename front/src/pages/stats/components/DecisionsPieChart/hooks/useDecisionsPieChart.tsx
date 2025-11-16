@@ -1,9 +1,7 @@
 import { useSearchParams } from "react-router";
 
 import { useGetDecisionsChartQuery } from "@/pages/stats/api";
-import { AD_STATUS } from "@/shared/constants";
-
-import { AD_STATUS_COLORS } from "../constants";
+import { AD_STATUS, AD_STATUS_COLORS } from "@/shared/constants";
 
 export const useDecisionsPieChart = () => {
   const [searchParams] = useSearchParams();

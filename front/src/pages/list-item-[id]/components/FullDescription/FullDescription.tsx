@@ -12,9 +12,17 @@ import {
   Text,
   Title
 } from "@mantine/core";
-import { IconCalendar, IconClock, IconMessage, IconPlus, IconStar } from "@tabler/icons-react";
+import {
+  IconCalendar,
+  IconCategory,
+  IconClock,
+  IconFlag,
+  IconMessage,
+  IconPlus,
+  IconStar
+} from "@tabler/icons-react";
 
-import { formatDateWithTime } from "@/shared/utils";
+import { formatDateWithTime, formatPrice } from "@/shared/utils";
 
 import styles from "./FullDescription.module.css";
 
@@ -31,14 +39,30 @@ export const FullDescription = (ad: IFullDescriptionProps) => {
           Полное описание
         </Title>
 
-        <Stack px='md'>
-          <Group gap='xs'>
-            <Text fw={600}>Название:</Text>
-            <Text> {ad.title}</Text>
+        <Stack px='md' gap='md'>
+          <Badge size='lg' variant='light' color='blue'>
+            {formatPrice(ad.price)}
+          </Badge>
+
+          <Group gap='sm'>
+            <Badge variant='outline' size='sm' leftSection={<IconCategory size={12} />}>
+              {ad.category}
+            </Badge>
+            <Badge
+              variant='outline'
+              size='sm'
+              color={ad.priority === "urgent" ? "red" : "gray"}
+              leftSection={<IconFlag size={12} />}
+            >
+              {ad.priority === "urgent" ? "Срочно" : "Обычный"}
+            </Badge>
+            <Badge variant='outline' size='sm' leftSection={<IconCalendar size={12} />}>
+              {formatDateWithTime(ad.createdAt)}
+            </Badge>
           </Group>
-          <Spoiler maxHeight={20} showLabel='Показать' hideLabel='Спрятать'>
-            <Text fw={600}>Описание:</Text>
-            <Text>{ad.description}</Text>
+
+          <Spoiler maxHeight={20} showLabel='Показать больше' hideLabel='Скрыть'>
+            <Text c='dimmed'>{ad.description}</Text>
           </Spoiler>
         </Stack>
 

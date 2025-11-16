@@ -1,5 +1,6 @@
 import { generatePath, useParams } from "react-router";
 
+import { useDisclosure } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import { IconCheck } from "@tabler/icons-react";
 
@@ -15,6 +16,9 @@ import type { IRejectRevisonForm } from "../types";
 
 export const useListItemPage = () => {
   const { id } = useParams() as { id: string };
+
+  const [rejectMoadalOpened, rejectMoadalActions] = useDisclosure(false);
+  const [revisionMoadalOpened, revisionMoadalActions] = useDisclosure(false);
 
   const postApproveAdMutation = usePostApproveAdMutation({
     options: {
@@ -78,6 +82,8 @@ export const useListItemPage = () => {
         comment: values.comment.trim() || null
       }
     });
+
+    rejectMoadalActions.close();
   };
 
   const revisionAd = async (values: IRejectRevisonForm) => {
@@ -90,6 +96,8 @@ export const useListItemPage = () => {
         comment: values.comment.trim() || null
       }
     });
+
+    revisionMoadalActions.close();
   };
 
   const actionsPending = postApproveAdMutation.isPending;
@@ -98,8 +106,10 @@ export const useListItemPage = () => {
     state: {
       adByIdQueryState: getAdByIdQuery,
       actionsPending,
+      rejectMoadalOpened,
+      revisionMoadalOpened,
       navigation: { prevAd, nextAd }
     },
-    functions: { approveAd, rejectAd, revisionAd }
+    functions: { approveAd, rejectAd, revisionAd, rejectMoadalActions, revisionMoadalActions }
   };
 };

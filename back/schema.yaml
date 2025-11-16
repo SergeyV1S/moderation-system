@@ -43,7 +43,7 @@ paths:
             type: array
             items:
               type: string
-              enum: [pending, approved, rejected, draft]
+              enum: [requestChanges, approved, rejected, draft]
         - name: categoryId
           in: query
           description: Фильтр по ID категории
@@ -430,7 +430,7 @@ components:
           type: integer
         status:
           type: string
-          enum: [pending, approved, rejected, draft]
+          enum: [requestChanges, approved, rejected, draft]
         priority:
           type: string
           enum: [normal, urgent]
