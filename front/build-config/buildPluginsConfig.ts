@@ -19,7 +19,7 @@ export const buildPluginsConfig = (options: IBuildConfigOptions) => {
       template: options.paths.html,
       favicon: options.paths.favicon
     }),
-    new DotenvPlugin({ path: ".env" }),
+    new DotenvPlugin({ path: ".env", systemvars: true }),
     new MiniCssExtractPlugin({
       filename: options.mode === "development" ? "styles/[name].css" : "[contenthash].css"
     })
