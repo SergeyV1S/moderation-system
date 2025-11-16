@@ -18,7 +18,7 @@ interface QuerySettings<Func = unknown> {
       Awaited<ReturnType<Func>>,
       any
     >,
-    "queryKey"
+    "queryKey" | "queryFn"
   >;
 }
 

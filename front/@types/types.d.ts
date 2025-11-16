@@ -1,6 +1,17 @@
 // Основные типы для объявлений
 type AdStatus = "pending" | "approved" | "rejected" | "draft";
 type Priority = "urgent" | "normal";
+type Period = "today" | "week" | "month";
+declare enum Category {
+  ELECTRONICS = "Электроника",
+  FASHION = "Мода",
+  REAL_ESTATE = "Недвижимость",
+  ANIMALS = "Животные",
+  TRANSPORT = "Транспорт",
+  JOB = "Работа",
+  KIDS = "Детское",
+  SERVICES = "Услуги"
+}
 
 // Тип для продавца
 interface Seller {

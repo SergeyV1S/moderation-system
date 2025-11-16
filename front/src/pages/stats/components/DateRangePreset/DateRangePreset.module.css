@@ -1,0 +1,19 @@
+.root {
+  flex-wrap: wrap;
+  border-radius: 16px;
+  width: 50%;
+}
+
+.label {
+  padding: 4px 16px;
+}
+
+.indicator {
+  border-radius: 16px;
+}
+
+@media (max-width: 800px) {
+  .root {
+    width: 100%;
+  }
+}
