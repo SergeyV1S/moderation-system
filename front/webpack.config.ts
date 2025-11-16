@@ -10,7 +10,7 @@ export default (env: IExternalVars) => {
   const config = webpackConfig({
     env,
     mode: env.MODE,
-    port: +process.env.PORT,
+    port: process.env.PORT ? +process.env.PORT : 5173,
     paths: {
       entry: path.resolve(__dirname, "src", "main.tsx"),
       html: path.resolve(__dirname, "index.html"),

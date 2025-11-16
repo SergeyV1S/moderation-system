@@ -1,0 +1,22 @@
+services:
+  server:
+    build:
+      context: ./back
+      dockerfile: ./Dockerfile
+    environment:
+      CLIENT_BASE_URL: http://localhost:5173
+      PORT: 8000
+    ports:
+      - "8000:8000"
+
+  client:
+    build:
+      context: ./front
+      dockerfile: ./Dockerfile
+    environment:
+      API_URL: http://localhost:8000/api/v1
+      PORT: 5173
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
