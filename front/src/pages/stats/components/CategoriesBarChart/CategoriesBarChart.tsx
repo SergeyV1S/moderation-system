@@ -1,15 +1,32 @@
-import { useSearchParams } from "react-router";
+import { BarChart } from "@mantine/charts";
+import { Title } from "@mantine/core";
 
-import { useGetCategoriesChartQuery } from "@/pages/stats/api";
+import { useCategoriesBarChart } from "./hooks";
 
 export const CategoriesBarChart = () => {
-  const [searchParams] = useSearchParams();
+  const { state } = useCategoriesBarChart();
 
-  const { data } = useGetCategoriesChartQuery({
-    period: searchParams.get("period") as Period,
-    startDate: +searchParams.get("startDate"),
-    endDate: +searchParams.get("endDate")
-  });
-
-  return <div className=''>{data.data.Детское}</div>;
+  return (
+    <>
+      <Title order={2} size='h4'>
+        Проверенные категории
+      </Title>
+      <BarChart
+        h={300}
+        pt={16}
+        type='stacked'
+        data={state.barChartData}
+        dataKey='category'
+        series={[
+          {
+            name: "Количество",
+            color: "cyan"
+          }
+        ]}
+        tooltipAnimationDuration={300}
+        tickLine='none'
+        gridAxis='none'
+      />
+    </>
+  );
 };

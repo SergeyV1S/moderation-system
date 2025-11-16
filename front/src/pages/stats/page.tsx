@@ -1,8 +1,6 @@
 import { Suspense } from "react";
 
-import { Box, Flex, Stack, Title } from "@mantine/core";
-
-import { CustomLoader as Loader } from "@/shared/ui";
+import { Flex, Grid, Paper, Skeleton, Stack, Title } from "@mantine/core";
 
 import {
   ActivityBarChart,
@@ -18,29 +16,34 @@ const StatsPage = () => (
       <Title order={1}>Моя статистика</Title>
       <DateRangePreset />
 
-      <Box pos='relative'>
-        <Suspense fallback={<Loader />}>
+      <Paper p='lg' pos='relative' shadow='sm' withBorder radius={16}>
+        <Suspense fallback={<Skeleton h={200} />}>
           <SummaryStats />
         </Suspense>
-      </Box>
+      </Paper>
 
-      <Box pos='relative'>
-        <Suspense fallback={<Loader />}>
-          <ActivityBarChart />
-        </Suspense>
-      </Box>
+      <Grid>
+        <Grid.Col span={{ base: 12, sm: 8 }}>
+          <Paper p='lg' pos='relative' shadow='sm' withBorder radius={16}>
+            <Suspense fallback={<Skeleton h={200} />}>
+              <ActivityBarChart />
+            </Suspense>
+          </Paper>
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, sm: 4 }}>
+          <Paper p='lg' pos='relative' shadow='sm' withBorder radius={16} h='100%'>
+            <Suspense fallback={<Skeleton h={200} />}>
+              <DecisionsPieChart />
+            </Suspense>
+          </Paper>
+        </Grid.Col>
+      </Grid>
 
-      <Box pos='relative'>
-        <Suspense fallback={<Loader />}>
-          <DecisionsPieChart />
-        </Suspense>
-      </Box>
-
-      <Box pos='relative'>
-        <Suspense fallback={<Loader />}>
+      <Paper p='lg' pos='relative' shadow='sm' withBorder radius={16}>
+        <Suspense fallback={<Skeleton h={200} />}>
           <CategoriesBarChart />
         </Suspense>
-      </Box>
+      </Paper>
     </Stack>
   </Flex>
 );

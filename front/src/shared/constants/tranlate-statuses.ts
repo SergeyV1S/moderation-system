@@ -1,5 +1,5 @@
 export const AD_STATUS = {
-  pending: "Ожидание",
+  requestChanges: "Ожидание",
   approved: "Одобрено",
   rejected: "Отклонено",
   draft: "Исправление"

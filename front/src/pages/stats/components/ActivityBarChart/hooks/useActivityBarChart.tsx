@@ -16,7 +16,7 @@ export const useActivityBarChart = () => {
     date: barData.date.split("-").reverse().join("."),
     [AD_STATUS["approved"]]: barData.approved,
     [AD_STATUS["rejected"]]: barData.rejected,
-    [AD_STATUS["pending"]]: barData.requestChanges,
+    [AD_STATUS["requestChanges"]]: barData.requestChanges,
     [AD_STATUS["draft"]]: barData.draft
   }));
 

@@ -1,24 +1,28 @@
 import { BarChart } from "@mantine/charts";
-import { Paper } from "@mantine/core";
+import { Title } from "@mantine/core";
 
-import { barChartSeries } from "./constants";
+import { activityBarChart } from "./constants";
 import { useActivityBarChart } from "./hooks";
 
 export const ActivityBarChart = () => {
   const { state } = useActivityBarChart();
 
   return (
-    <Paper p='lg' shadow='sm' withBorder radius={16}>
+    <>
+      <Title order={2} size='h4'>
+        Активность
+      </Title>
       <BarChart
+        pt={16}
         h={300}
         type='stacked'
         data={state.barChartData}
         dataKey='date'
-        series={barChartSeries}
+        series={activityBarChart}
         tooltipAnimationDuration={300}
         tickLine='none'
         gridAxis='none'
       />
-    </Paper>
+    </>
   );
 };

@@ -9,7 +9,7 @@ import styles from "./AdCard.module.css";
 type TAdCardProps = Ad;
 
 const STATUS_COLOR = {
-  pending: "yellow",
+  requestChanges: "yellow",
   rejected: "red",
   approved: "green",
   draft: "gray"

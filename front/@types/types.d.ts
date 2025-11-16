@@ -1,5 +1,5 @@
 // Основные типы для объявлений
-type AdStatus = "pending" | "approved" | "rejected" | "draft";
+type AdStatus = "requestChanges" | "approved" | "rejected" | "draft";
 type Priority = "urgent" | "normal";
 type Period = "today" | "week" | "month";
 declare enum Category {

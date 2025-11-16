@@ -1,15 +1,25 @@
-import { useSearchParams } from "react-router";
+import { PieChart } from "@mantine/charts";
+import { Center, Title } from "@mantine/core";
 
-import { useGetDecisionsChartQuery } from "@/pages/stats/api";
+import { useDecisionsPieChart } from "./hooks";
 
 export const DecisionsPieChart = () => {
-  const [searchParams] = useSearchParams();
+  const { state } = useDecisionsPieChart();
 
-  const { data } = useGetDecisionsChartQuery({
-    period: searchParams.get("period") as Period,
-    startDate: +searchParams.get("startDate"),
-    endDate: +searchParams.get("endDate")
-  });
-
-  return <div className=''>{data.data.approved}</div>;
+  return (
+    <>
+      <Title order={2} size='h4'>
+        Распределение решений в %
+      </Title>
+      <Center h='90%'>
+        <PieChart
+          data={state.pieChartData}
+          labelsType='percent'
+          withTooltip
+          withLabels
+          tooltipDataSource='segment'
+        />
+      </Center>
+    </>
+  );
 };

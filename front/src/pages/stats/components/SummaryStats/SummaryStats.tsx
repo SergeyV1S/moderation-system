@@ -6,7 +6,7 @@ export const SummaryStats = () => {
   const { state } = useSummaryStats();
 
   return (
-    <Paper p='lg' shadow='sm' withBorder radius={16}>
+    <>
       <Title order={2} size='h3'>
         Общая статистика
       </Title>
@@ -29,6 +29,6 @@ export const SummaryStats = () => {
           </Grid.Col>
         ))}
       </Grid>
-    </Paper>
+    </>
   );
 };

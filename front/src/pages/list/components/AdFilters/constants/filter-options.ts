@@ -41,8 +41,8 @@ export const statusOptions = [
     value: "approved"
   },
   {
-    label: AD_STATUS["pending"],
-    value: "pending"
+    label: AD_STATUS["requestChanges"],
+    value: "requestChanges"
   },
   {
     label: AD_STATUS["rejected"],
