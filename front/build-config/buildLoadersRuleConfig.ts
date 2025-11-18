@@ -1,3 +1,5 @@
+import { defineReactCompilerLoaderOption, reactCompilerLoader } from "react-compiler-webpack";
+
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 import type { IBuildConfigOptions } from "./types";
@@ -41,39 +43,53 @@ export const buildLoadersRuleConfig = (options: IBuildConfigOptions) => {
 
   // const tsLoader = {
   //   test: /\.tsx?$/,
-  //   loader: "ts-loader",
   //   exclude: /node_modules/,
-  //   options: {
-  //     getCustomTransformers: () => ({
-  //       before: [
-  //         options.mode === "development" && ReactRefreshTypeScript(), нужно установить 'react-refresh-typescript'
-  //       ].filter(Boolean),
-  //     }),
-  //     transpileOnly: true,
-  //   },
+  //   use: [
+  //     {
+  //       loader: "ts-loader",
+  //       options: {
+  //         getCustomTransformers: () => ({
+  //           before: [
+  //             options.mode === "development" && ReactRefreshTypeScript(), нужно установить 'react-refresh-typescript'
+  //           ].filter(Boolean)
+  //         }),
+  //         transpileOnly: true
+  //       }
+  //     },
+  //     {
+  //       loader: reactCompilerLoader,
+  //       options: defineReactCompilerLoaderOption({})
+  //     }
+  //   ]
   // };
 
   const swcLoader = {
     test: /\.[jt]sx?$/,
     exclude: /node_modules/,
-    use: {
-      loader: "swc-loader",
-      options: {
-        jsc: {
-          parser: {
-            syntax: "typescript",
-            tsx: true,
-            decorators: true
-          },
-          transform: {
-            react: {
-              runtime: "automatic",
-              refresh: options.mode === "development"
+    use: [
+      {
+        loader: "swc-loader",
+        options: {
+          jsc: {
+            parser: {
+              syntax: "typescript",
+              tsx: true,
+              decorators: true
+            },
+            transform: {
+              react: {
+                runtime: "automatic",
+                refresh: options.mode === "development"
+              }
             }
           }
         }
+      },
+      {
+        loader: reactCompilerLoader,
+        options: defineReactCompilerLoaderOption({})
       }
-    }
+    ]
   };
 
   return [cssLoader, ...assetsLoader, swcLoader];
