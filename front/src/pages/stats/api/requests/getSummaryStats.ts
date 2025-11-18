@@ -13,8 +13,8 @@ interface IGetSummaryStatsResponse {
 
 export interface IGetSummaryStatsParams {
   period: Period;
-  startDate: number;
-  endDate: number;
+  startDate: string;
+  endDate: string;
 }
 
 export type TGetSummaryStatsConfig = RequestConfig<IGetSummaryStatsParams>;

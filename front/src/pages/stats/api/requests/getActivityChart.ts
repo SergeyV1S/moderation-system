@@ -10,8 +10,8 @@ interface IGetActivityChartResponse {
 
 export interface IGetActivityChartParams {
   period: Period;
-  startDate: number;
-  endDate: number;
+  startDate: string;
+  endDate: string;
 }
 
 export type TGetActivityChartConfig = RequestConfig<IGetActivityChartParams>;

@@ -2,14 +2,15 @@ import { useSearchParams } from "react-router";
 
 import { useGetDecisionsChartQuery } from "@/pages/stats/api";
 import { AD_STATUS, AD_STATUS_COLORS } from "@/shared/constants";
+import { formatDateParam } from "@/shared/utils";
 
 export const useDecisionsPieChart = () => {
   const [searchParams] = useSearchParams();
 
   const { data } = useGetDecisionsChartQuery({
     period: searchParams.get("period") as Period,
-    startDate: +searchParams.get("startDate") ? +searchParams.get("startDate") : undefined,
-    endDate: +searchParams.get("endDate") ? +searchParams.get("endDate") : undefined
+    startDate: formatDateParam(searchParams, "startDate"),
+    endDate: formatDateParam(searchParams, "endDate")
   });
 
   const pieChartData = Object.entries(data.data).map((pieData: [AdStatus, number]) => ({

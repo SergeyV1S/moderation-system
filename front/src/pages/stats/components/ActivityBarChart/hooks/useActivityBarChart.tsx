@@ -2,14 +2,15 @@ import { useSearchParams } from "react-router";
 
 import { useGetActivityChartQuery } from "@/pages/stats/api";
 import { AD_STATUS } from "@/shared/constants";
+import { formatDateParam } from "@/shared/utils";
 
 export const useActivityBarChart = () => {
   const [searchParams] = useSearchParams();
 
   const { data } = useGetActivityChartQuery({
     period: searchParams.get("period") as Period,
-    startDate: +searchParams.get("startDate") ? +searchParams.get("startDate") : undefined,
-    endDate: +searchParams.get("endDate") ? +searchParams.get("endDate") : undefined
+    startDate: formatDateParam(searchParams, "startDate"),
+    endDate: formatDateParam(searchParams, "endDate")
   });
 
   const barChartData = data.data.map((barData) => ({

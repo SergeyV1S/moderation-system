@@ -10,14 +10,14 @@ import {
 } from "@tabler/icons-react";
 
 import { useGetSummaryStatsQuery } from "@/pages/stats/api";
-import { formatDuration } from "@/shared/utils";
+import { formatDateParam, formatDuration } from "@/shared/utils";
 
 export const useSummaryStats = () => {
   const [searchParams] = useSearchParams();
   const { data } = useGetSummaryStatsQuery({
     period: searchParams.get("period") as Period,
-    startDate: +searchParams.get("startDate") ? +searchParams.get("startDate") : undefined,
-    endDate: +searchParams.get("endDate") ? +searchParams.get("endDate") : undefined
+    startDate: formatDateParam(searchParams, "startDate"),
+    endDate: formatDateParam(searchParams, "endDate")
   });
 
   const stats = data.data;

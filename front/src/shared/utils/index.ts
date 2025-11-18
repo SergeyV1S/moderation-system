@@ -4,3 +4,4 @@ export * from "./updateSearchParams";
 export * from "./formatDate";
 export * from "./formatDuration";
 export * from "./formatPrice";
+export * from "./formatDateParam";

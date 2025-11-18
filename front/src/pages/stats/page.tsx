@@ -5,6 +5,7 @@ import { Flex, Grid, Paper, Skeleton, Stack, Title } from "@mantine/core";
 import {
   ActivityBarChart,
   CategoriesBarChart,
+  DateRangePicker,
   DateRangePreset,
   DecisionsPieChart,
   SummaryStats
@@ -16,9 +17,17 @@ const StatsPage = () => (
       <Title order={1} size='h2'>
         Моя статистика
       </Title>
-      <DateRangePreset />
 
-      <Paper p='lg' pos='relative' shadow='sm' withBorder radius={16}>
+      <Grid>
+        <Grid.Col span={{ base: 12, xs: 6, md: 4 }}>
+          <DateRangePicker />
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, xs: 6, md: 8 }}>
+          <DateRangePreset />
+        </Grid.Col>
+      </Grid>
+
+      <Paper p='lg' shadow='sm' withBorder radius={16}>
         <Suspense fallback={<Skeleton h={200} />}>
           <SummaryStats />
         </Suspense>
@@ -26,14 +35,14 @@ const StatsPage = () => (
 
       <Grid>
         <Grid.Col span={{ base: 12, sm: 8 }}>
-          <Paper p='lg' pos='relative' shadow='sm' withBorder radius={16}>
+          <Paper p='lg' shadow='sm' withBorder radius={16}>
             <Suspense fallback={<Skeleton h={200} />}>
               <ActivityBarChart />
             </Suspense>
           </Paper>
         </Grid.Col>
         <Grid.Col span={{ base: 12, sm: 4 }}>
-          <Paper p='lg' pos='relative' shadow='sm' withBorder radius={16} h='100%'>
+          <Paper p='lg' shadow='sm' withBorder radius={16} h='100%'>
             <Suspense fallback={<Skeleton h={200} />}>
               <DecisionsPieChart />
             </Suspense>
@@ -41,7 +50,7 @@ const StatsPage = () => (
         </Grid.Col>
       </Grid>
 
-      <Paper p='lg' pos='relative' shadow='sm' withBorder radius={16}>
+      <Paper p='lg' shadow='sm' withBorder radius={16}>
         <Suspense fallback={<Skeleton h={200} />}>
           <CategoriesBarChart />
         </Suspense>

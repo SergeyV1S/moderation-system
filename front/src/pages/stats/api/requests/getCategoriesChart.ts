@@ -4,8 +4,8 @@ interface IGetCategoriesChartResponse extends Record<Category, number> {}
 
 export interface IGetCategoriesChartParams {
   period: Period;
-  startDate: number;
-  endDate: number;
+  startDate: string;
+  endDate: string;
 }
 
 export type TGetCategoriesChartConfig = RequestConfig<IGetCategoriesChartParams>;

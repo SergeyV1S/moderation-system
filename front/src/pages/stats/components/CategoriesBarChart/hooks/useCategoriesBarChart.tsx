@@ -1,14 +1,15 @@
 import { useSearchParams } from "react-router";
 
 import { useGetCategoriesChartQuery } from "@/pages/stats/api";
+import { formatDateParam } from "@/shared/utils";
 
 export const useCategoriesBarChart = () => {
   const [searchParams] = useSearchParams();
 
   const { data } = useGetCategoriesChartQuery({
     period: searchParams.get("period") as Period,
-    startDate: +searchParams.get("startDate") ? +searchParams.get("startDate") : undefined,
-    endDate: +searchParams.get("endDate") ? +searchParams.get("endDate") : undefined
+    startDate: formatDateParam(searchParams, "startDate"),
+    endDate: formatDateParam(searchParams, "endDate")
   });
 
   const barChartData = Object.entries(data.data).map((barData: [Category, number]) => ({

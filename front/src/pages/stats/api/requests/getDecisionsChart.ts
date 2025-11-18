@@ -8,8 +8,8 @@ interface IGetDecisionsChartResponse {
 
 export interface IGetDecisionsChartParams {
   period: Period;
-  startDate: number;
-  endDate: number;
+  startDate: string;
+  endDate: string;
 }
 
 export type TGetDecisionsChartConfig = RequestConfig<IGetDecisionsChartParams>;
