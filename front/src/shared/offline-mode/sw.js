@@ -21,7 +21,7 @@ registerRoute(
     cacheName: "html-cache",
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [200]
+        statuses: [0, 200]
       })
     ]
   })
@@ -36,19 +36,20 @@ registerRoute(
     cacheName: "static-resources",
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [200]
+        statuses: [0, 200]
       })
     ]
   })
 );
 
 registerRoute(
-  ({ request }) => request.destination === "image",
+  ({ request }) =>
+    request.destination === "image" || /\.(png|jpg|jpeg|gif|webp|svg|ico)$/i.test(request.url),
   new CacheFirst({
     cacheName: "images-cache",
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [200]
+        statuses: [0, 200]
       }),
       new ExpirationPlugin({
         maxEntries: 60,
@@ -65,7 +66,7 @@ registerRoute(
     networkTimeoutSeconds: 3,
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [200]
+        statuses: [0, 200]
       }),
       new ExpirationPlugin({
         maxEntries: 50,

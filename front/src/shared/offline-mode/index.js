@@ -1,9 +1,3 @@
-export const showUpdateNotification = () => {
-  if (window.confirm("Доступна новая версия приложения. Обновить?")) {
-    window.location.reload();
-  }
-};
-
 export const registerCustomServiceWorker = () => {
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
@@ -15,7 +9,7 @@ export const registerCustomServiceWorker = () => {
           if (newWorker) {
             newWorker.addEventListener("statechange", () => {
               if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
-                showUpdateNotification();
+                window.location.reload();
               }
             });
           }

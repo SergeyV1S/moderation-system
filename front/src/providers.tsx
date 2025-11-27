@@ -6,12 +6,15 @@ import { QueryClientProvider } from "@tanstack/react-query";
 
 import { router } from "./router";
 import { queryClient } from "./shared/constants";
+import { OfflineProvider } from "./shared/offline-mode/OfflineProvider";
 
 export const Providers = () => (
   <QueryClientProvider client={queryClient}>
     <MantineProvider>
-      <RouterProvider router={router} />
-      <Notifications autoClose={2000} />
+      <OfflineProvider>
+        <RouterProvider router={router} />
+        <Notifications autoClose={2000} />
+      </OfflineProvider>
     </MantineProvider>
   </QueryClientProvider>
 );

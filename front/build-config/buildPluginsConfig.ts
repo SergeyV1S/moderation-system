@@ -32,6 +32,7 @@ export const buildPluginsConfig = (options: IBuildConfigOptions) => {
       mode: options.mode,
       swSrc: options.paths.sw,
       swDest: "sw.js",
+      include: [/\.html$/, /\.js$/, /\.css$/, /\.(png|jpg|jpeg|svg)$/, /\.json$/],
       maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
     })
   ];
