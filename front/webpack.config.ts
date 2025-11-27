@@ -16,7 +16,8 @@ export default (env: IExternalVars) => {
       html: path.resolve(__dirname, "index.html"),
       output: path.resolve(__dirname, "dist"),
       favicon: path.resolve(__dirname, "public", "favicon.png"),
-      src: path.resolve(__dirname, "src")
+      src: path.resolve(__dirname, "src"),
+      sw: path.resolve(__dirname, "src/shared/offline-mode", "sw.js")
     }
   });
 

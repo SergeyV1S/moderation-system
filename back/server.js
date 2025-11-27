@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.use(cors({
-    origin: [process.env.CLIENT_BASE_URL],
+    origin: [process.env.CLIENT_BASE_URL, "http://127.0.0.1:8080"],
     credentials: true
   }))
 

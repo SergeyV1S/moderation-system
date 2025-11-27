@@ -8,6 +8,7 @@ import "@mantine/notifications/styles.css";
 import "dayjs/locale/ru";
 
 import { Providers } from "./providers";
+import { registerCustomServiceWorker } from "./shared/offline-mode";
 
 const init = () => {
   const container = document.querySelector("#root")!;
@@ -18,3 +19,5 @@ const init = () => {
 };
 
 init();
+
+registerCustomServiceWorker();

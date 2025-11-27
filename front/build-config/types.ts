@@ -4,6 +4,7 @@ export interface IBuildConfigPaths {
   favicon: string;
   output: string;
   src: string;
+  sw: string;
 }
 
 export type TBuildMode = "production" | "development";

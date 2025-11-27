@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "serve -s dist -l 8080",
     "dev": "webpack serve --env MODE=development",
     "build": "webpack --env MODE=production",
+    "build:dev": "webpack --env MODE=development",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,md}\"",
     "typecheck": "tsc"
@@ -44,6 +46,7 @@
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@types/webpack-dev-server": "^4.7.1",
     "babel-plugin-react-compiler": "^1.0.0",
+    "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^7.1.2",
     "dotenv-webpack": "^8.1.1",
     "eslint": "^9.36.0",
@@ -58,6 +61,7 @@
     "prettier": "^3.6.2",
     "react-compiler-webpack": "^1.0.0",
     "react-refresh": "^0.17.0",
+    "serve": "^14.2.5",
     "swc-loader": "^0.2.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
@@ -65,6 +69,7 @@
     "webpack": "^5.101.3",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.2"
+    "webpack-dev-server": "^5.2.2",
+    "workbox-webpack-plugin": "^7.4.0"
   }
 }
