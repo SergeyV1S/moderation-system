@@ -5,7 +5,7 @@
   "lang": "ru-RU",
   "background_color": "#2EC6FE",
   "theme_color": "#2EC6FE",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
   "start_url": "/",
   "icons": [
     {
@@ -19,6 +19,12 @@
       "sizes": "512x512",
       "src": "icon512_rounded.png",
       "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "16x16 32x32",
+      "src": "/favicon.png",
+      "type": "image/x-icon"
     }
   ],
   "display": "standalone",

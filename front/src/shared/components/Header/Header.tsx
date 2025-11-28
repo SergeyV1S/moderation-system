@@ -1,7 +1,13 @@
 import { Link } from "react-router";
 
 import { Avatar, Button, Group, Menu, Text } from "@mantine/core";
-import { IconChartBar, IconChevronDown, IconLogout, IconUser } from "@tabler/icons-react";
+import {
+  IconChartBar,
+  IconChevronDown,
+  IconLogout,
+  IconSettings,
+  IconUser
+} from "@tabler/icons-react";
 
 import { PATHS } from "@/shared/constants";
 
@@ -21,8 +27,11 @@ export const Header = () => (
 
       <Menu.Dropdown>
         <Menu.Label>Приложение</Menu.Label>
-        <Menu.Item component={Link} to='/stats' leftSection={<IconChartBar size={14} />}>
+        <Menu.Item component={Link} to={PATHS.STATS} leftSection={<IconChartBar size={14} />}>
           Моя статистика
+        </Menu.Item>
+        <Menu.Item component={Link} to={PATHS.SETTINGS} leftSection={<IconSettings size={14} />}>
+          Настройка
         </Menu.Item>
 
         <Menu.Divider />

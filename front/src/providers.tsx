@@ -13,7 +13,7 @@ export const Providers = () => (
     <MantineProvider>
       <OfflineProvider>
         <RouterProvider router={router} />
-        <Notifications autoClose={2000} />
+        <Notifications position='top-center' autoClose={2000} />
       </OfflineProvider>
     </MantineProvider>
   </QueryClientProvider>

@@ -1,4 +1,5 @@
 const dataStore = require('../../models/v1/data');
+const notificationService = require('./notification');
 
 const getAds = (req, res) => {
   try {
@@ -112,7 +113,7 @@ const getAdById = (req, res) => {
   }
 };
 
-const approveAd = (req, res) => {
+const approveAd = async (req, res) => {
   try {
     const { id } = req.params;
     const adId = parseInt(id);
@@ -139,6 +140,23 @@ const approveAd = (req, res) => {
     ad.moderationHistory.push(historyEntry);
     ad.status = 'approved';
     ad.updatedAt = new Date().toISOString();
+
+      if (ad.author && ad.author.id) {
+        try {
+          await notificationService.sendAdApprovedNotification(
+            ad.author.id.toString(), 
+            {
+              id: ad.id,
+              title: ad.title,
+              description: ad.description
+            }
+          );
+          
+          console.log(`Уведомление отправлено автору объявления: ${ad.author.id}`);
+        } catch (notificationError) {
+          console.error('Ошибка отправки уведомления:', notificationError);
+        }
+      }
     
     res.json({
       message: 'Объявление успешно одобрено',

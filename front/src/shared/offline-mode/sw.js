@@ -1,13 +1,14 @@
 import { CacheableResponsePlugin } from "workbox-cacheable-response";
-import { clientsClaim } from "workbox-core";
 import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { CacheFirst, NetworkFirst, StaleWhileRevalidate } from "workbox-strategies";
 
-self.skipWaiting();
+import { PATHS } from "../constants";
 
-clientsClaim();
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+});
 
 precacheAndRoute(self.__WB_MANIFEST);
 
@@ -75,3 +76,32 @@ registerRoute(
     ]
   })
 );
+
+self.addEventListener("push", (event) => {
+  if (event.data) {
+    try {
+      const pushData = event.data.json();
+
+      self.registration.showNotification(pushData.title, {
+        body: pushData.body || "Новое сообщение",
+        icon: pushData.icon || "/icon512_rounded.png",
+        badge: pushData.badge || "/favicon.png",
+        lang: "ru-Ru",
+        image: pushData.image,
+        tag: pushData.tag || "",
+        data: pushData.data,
+        requireInteraction: pushData.requireInteraction || false,
+        silent: pushData.silent || false,
+        vibrate: pushData.vibrate || [200, 100, 200],
+        timestamp: Date.now()
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  event.waitUntil(clients.openWindow(PATHS.INDEX));
+});

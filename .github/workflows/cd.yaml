@@ -5,6 +5,8 @@ env:
   API_URL: ${{ secrets.API_URL }}
   CLIENT_BASE_URL: ${{ secrets.CLIENT_BASE_URL }}
   CLIENT_PORT: ${{ secrets.CLIENT_PORT }}
+  VAPID_PUBLIC_KEY: ${{ secrets.VAPID_PUBLIC_KEY }}
+  VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
 
 on:
   pull_request:
@@ -40,6 +42,8 @@ jobs:
           build-args: |
             CLIENT_PORT=${{ env.CLIENT_PORT }}
             API_URL=${{ env.API_URL }}
+            VAPID_PUBLIC_KEY=${{ env.VAPID_PUBLIC_KEY }}
+            VAPID_PRIVATE_KEY=${{ env.VAPID_PRIVATE_KEY }}
 
   server-build:
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
@@ -69,6 +73,8 @@ jobs:
           build-args: |
             API_PORT=${{ env.API_PORT }}
             CLIENT_BASE_URL=${{ env.CLIENT_BASE_URL }}
+            VAPID_PUBLIC_KEY=${{ env.VAPID_PUBLIC_KEY }}
+            VAPID_PRIVATE_KEY=${{ env.VAPID_PRIVATE_KEY }}
         
   deploy:
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
@@ -97,6 +103,8 @@ jobs:
           cd ${{ secrets.PATH_TO_PROJECT }}
           cat << 'ENV_EOF' > .env
           API_PORT=${{ env.API_PORT }}
+          VAPID_PUBLIC_KEY=${{ env.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY=${{ env.VAPID_PRIVATE_KEY }}
           API_URL=${{ env.API_URL }}
           CLIENT_BASE_URL=${{ env.CLIENT_BASE_URL }}
           CLIENT_PORT=${{ env.CLIENT_PORT }}
