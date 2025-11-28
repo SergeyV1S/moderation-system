@@ -2,8 +2,8 @@ require('dotenv/config');
 const webPush = require('web-push');
 
 const vapidKeys = {
-  publicKey: process.env.VAPID_PUBLIC_KEY,
-  privateKey: process.env.VAPID_PRIVATE_KEY
+  publicKey: process.env.VAPID_PUBLIC_KEY || "BBL1QK3hgqNEpIHJWsVIOw4jt-uCcpDQEFka_LW7S03PBzvmcDXU1VY80wkOJvV3PMKpFKnwOE8a7C-jZE2kXD4",
+  privateKey: process.env.VAPID_PRIVATE_KEY || "5pFlVa01vl84XMbpQlCm2PV-JjHt0xzGkvJxXAcv_b4"
 };
 
 webPush.setVapidDetails(
