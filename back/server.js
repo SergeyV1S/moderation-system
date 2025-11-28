@@ -5,8 +5,6 @@ require('dotenv/config');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-console.log(process.env.VAPID_PUBLIC_KEY);
-
 app.use(express.json());
 app.use(express.static('public'));
 
