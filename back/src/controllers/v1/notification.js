@@ -1,5 +1,5 @@
-const webPush = require('web-push');
 require('dotenv/config');
+const webPush = require('web-push');
 
 const vapidKeys = {
   publicKey: process.env.VAPID_PUBLIC_KEY,
